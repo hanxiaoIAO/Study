@@ -1,4 +1,4 @@
-package hanxiao.spring.b_iocdi_annotion;
+package hanxiao.spring.b_iocdi_annotation;
 
 import javax.annotation.Resource;
 

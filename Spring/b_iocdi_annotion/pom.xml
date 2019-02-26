@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>hanxiao.spring</groupId>
-  <artifactId>b_iocdi_annotion</artifactId>
+  <artifactId>b_iocdi_annotation</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>b_iocdi_annotion</name>
+  <name>b_iocdi_annotation</name>
   <url>http://maven.apache.org</url>
 
   <properties>

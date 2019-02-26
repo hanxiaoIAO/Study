@@ -16,9 +16,13 @@
 	
 	<aop:config>
 		<aop:aspect ref="myAspect">
-			<aop:pointcut expression="* hanxiao.Spring.c_aop.*.*(..)" id="myPointCut"/>
+			<aop:pointcut expression="execution(* hanxiao.spring.c_aop.*.*(..))" id="myPointCut"/>
 			
-			<aop:before method="myBefore" pointcut="myPointCut"/>
+			<aop:before method="myBefore" pointcut-ref="myPointCut"/>
+			<aop:after-returning method="myAfterReturning" pointcut-ref="myPointCut" returning="ret"/>
+			<aop:around method="myAround" pointcut-ref="myPointCut"/>
+			<aop:after-throwing method="myAfterThrowing" pointcut-ref="myPointCut" throwing="e"/>
+			<aop:after method="myAfter" pointcut-ref="myPointCut"/>
 		</aop:aspect>
 	</aop:config>
 </beans> 

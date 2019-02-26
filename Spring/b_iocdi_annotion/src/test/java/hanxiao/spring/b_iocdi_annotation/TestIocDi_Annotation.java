@@ -1,10 +1,10 @@
-package hanxiao.spring.b_iocdi_annotion;
+package hanxiao.spring.b_iocdi_annotation;
 
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import hanxiao.spring.b_iocdi_annotion.Material;
-import hanxiao.spring.b_iocdi_annotion.PurchaseDao;
+import hanxiao.spring.b_iocdi_annotation.Material;
+import hanxiao.spring.b_iocdi_annotation.PurchaseDao;
 
 public class TestIocDi_Annotation {
 	
