@@ -13,7 +13,7 @@ public class TestJdbcTemplate {
 		userDao.addUser(1, "theo");
 		
 		AccountDao accountDao = (AccountDao) applicationContext.getBean("accountDao");
-		accountDao.addAccount(1, "theo", 100);
+		accountDao.addAccount(2, "hanxiao", 100);
 		applicationContext.close();
 	}
 }
