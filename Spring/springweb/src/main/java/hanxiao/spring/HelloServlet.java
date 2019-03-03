@@ -27,7 +27,7 @@ public class HelloServlet extends HttpServlet{
 
 				
 				AccountService acccountService = (AccountService)applicationContext.getBean("accountService");
-				acccountService.transfer("jack", "rose", 1000);
+				acccountService.transfer("theo", "hanxiao", 10);
 	}
 
 }

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>hanxiao.spring</groupId>
-	<artifactId>springweb</artifactId>
+	<artifactId>i_springweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>springweb</name>
+	<name>i_springweb</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
