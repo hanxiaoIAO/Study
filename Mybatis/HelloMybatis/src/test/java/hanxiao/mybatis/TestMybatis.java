@@ -17,8 +17,9 @@ public class TestMybatis {
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
-		
-		List<Category> categorys = session.selectList("listCategory");
+//		List<Category> categorys = session.selectList("listCategory");
+		CategoryDao categoryDao = session.getMapper(CategoryDao.class);
+		List<Category> categorys = categoryDao.listCategory();
 		for(Category category:categorys) {
 			System.out.println(category.getName());
 		}
