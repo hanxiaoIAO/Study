@@ -23,5 +23,19 @@ public class TestMybatis {
 		for(Category category:categorys) {
 			System.out.println(category.getName());
 		}
+
+		Category category = categoryDao.getCategory(1);
+		System.out.println(category.getName());
+		
+		category = new Category();
+		category.setId(5);
+		category.setName("category6");
+		categoryDao.addCategory(category);
+		
+		category.setName("category5");
+		categoryDao.updateCategory(category);
+		
+        session.commit();
+        session.close();
 	}
 }
