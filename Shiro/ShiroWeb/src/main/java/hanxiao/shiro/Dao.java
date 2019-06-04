@@ -18,7 +18,7 @@ public class Dao {
 	}
 	
 	public Connection getConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost:3306/shiro?characterEncoding=UTF-8", "root",
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/shiro?serverTimezone=UTC&characterEncoding=UTF-8", "root",
 				"root");
 	}
 	
