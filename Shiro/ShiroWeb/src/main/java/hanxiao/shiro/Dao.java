@@ -11,7 +11,7 @@ import java.util.Set;
 public class Dao {
 	public Dao() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -19,7 +19,7 @@ public class Dao {
 	
 	public Connection getConnection() throws SQLException {
 		return DriverManager.getConnection("jdbc:mysql://localhost:3306/shiro?serverTimezone=UTC&characterEncoding=UTF-8", "root",
-				"root");
+				"111111");
 	}
 	
 	public String getPassword(String userName) {
@@ -40,7 +40,7 @@ public class Dao {
 	
 	public Set<String> listRoles(String useName){
 		Set<String> roles = new HashSet<>();
-		String sql = "select r.name from user u left join user_role ur on u.id = ur.uid left join Role r on r.id = ur.uid where u.name ?";
+		String sql = "select r.name from user u left join user_role ur on u.id = ur.uid left join Role r on r.id = ur.uid where u.name =  ?";
 		try(Connection c = getConnection();PreparedStatement ps = c.prepareStatement(sql);){
 			ps.setString(1, useName);
 			ResultSet rs = ps.executeQuery();
