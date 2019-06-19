@@ -1,4 +1,4 @@
-package hanxiao.springboot.shiro;
+package hanxiao.springboot.demo.shiro;
 
 
 import java.util.Set;

@@ -1,0 +1,46 @@
+DROP DATABASE IF EXISTS springboot;
+CREATE DATABASE springboot DEFAULT CHARACTER SET utf8;
+USE springboot;
+DROP TABLE IF EXISTS USER;
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS permission;
+DROP TABLE IF EXISTS user_role;
+DROP TABLE IF EXISTS role_permission;
+
+CREATE TABLE USER(
+	id BIGINT AUTO_INCREMENT,
+	NAME VARCHAR(100),
+	PASSWORD VARCHAR(100),
+	
+	CONSTRAINT pk_user PRIMARY KEY(id)
+)CHARSET=utf8;
+CREATE TABLE role(
+	id BIGINT AUTO_INCREMENT,
+	NAME VARCHAR(100),
+	CONSTRAINT pk_role PRIMARY KEY(id)
+)CHARSET=utf8;
+CREATE TABLE permission(
+	id BIGINT AUTO_INCREMENT,
+	NAME VARCHAR(100),
+	CONSTRAINT pk_permission PRIMARY KEY(id)
+)CHARSET=utf8;
+CREATE TABLE user_role(
+        userid BIGINT,
+	roleid BIGINT,
+	
+	CONSTRAINT bk_user_role PRIMARY KEY(userid,roleid)
+);
+CREATE TABLE role_permission(
+	roleid BIGINT,
+	permissionid BIGINT,
+	CONSTRAINT bk_role_permssion PRIMARY KEY(roleid,permissionid)
+);
+
+INSERT INTO USER VALUES(1,"吴鹏飞","111111");
+INSERT INTO USER VALUES(2,"韩啸","111111");
+INSERT INTO role VALUES(1,"1");
+INSERT INTO role VALUES(2,"0");
+INSERT INTO permission VALUES(1,"ALL");
+INSERT INTO user_role(userid,roleid)VALUES(1,1);
+INSERT INTO user_role(userid,roleid)VALUES(2,2);
+INSERT INTO role_permission(roleid,permissionid)VALUES(2,1);

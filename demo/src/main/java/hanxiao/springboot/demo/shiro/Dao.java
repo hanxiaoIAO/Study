@@ -1,4 +1,4 @@
-package hanxiao.springboot.shiro;
+package hanxiao.springboot.demo.shiro;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,8 +18,8 @@ public class Dao {
 	}
 	
 	public Connection getConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost:3306/shiro?serverTimezone=UTC&characterEncoding=UTF-8", "root",
-				"111111");
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC&characterEncoding=UTF-8", "root",
+				"root");
 	}
 	
 	public String getPassword(String userName) {

@@ -1,5 +1,9 @@
 package hanxiao.springboot.demo.controller;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +18,15 @@ public class LoginController {
     }
 	
 	@PostMapping("/login")
-	public String login(String emailAddress,String password) {
-		System.out.println(emailAddress);
-		System.out.println(password);
-		return "index";
+	public String login(String name,String password) {
+		Subject subject = SecurityUtils.getSubject(); 
+        UsernamePasswordToken token = new UsernamePasswordToken(name, password); 
+        try { 
+            subject.login(token);
+            return "redirect:/index";
+        } catch (AuthenticationException e) { 
+            return "login";
+        } 
 	}
 	
 }
