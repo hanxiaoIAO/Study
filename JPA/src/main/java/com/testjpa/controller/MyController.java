@@ -26,4 +26,9 @@ public class MyController {
 		return "hello";
 	}
 	
+	@RequestMapping("/index") 
+	public String index() {
+		return "index";
+	}
+	
 }
