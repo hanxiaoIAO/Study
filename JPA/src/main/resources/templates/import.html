@@ -11,23 +11,23 @@
 </head>
 <body>
     <div class="container">
-        <input type="file" id="import" class="btn btn-default btn-block" value="添加文件" webkitdirectory multiple />
-       <!-- <input type="button" class="btn btn-default btn-block" id="import" value="添加文件"/>-->
-        <input type="button" class="btn btn-default btn-block" id="view" value="查看文件"/>
+        <div class="row">
+            <p></p>
+            <p><input type="file" id="filepicker" name="fileList" webkitdirectory multiple /></p>
+        </div>
         <div class="row">
             <table class="table table-bordered">
                 <thead>
-                <tr>
-                    <td>行号</td>
-                    <td>文件名</td>
-                    <td>标签</td>
-                </tr>
+                    <tr>
+                        <td>文件名</td>
+                        <td>标签</td>
+                    </tr>
                 </thead>
                 <tbody id="tablebody"></tbody>
             </table>
         </div>
     </div>
-    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js" rel="external nofollow"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/myscript.js}"></script>
 </body>

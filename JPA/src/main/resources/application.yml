@@ -10,7 +10,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/testpy?nullCatalogMeansCurrent=true&serverTimezone=UTC
     username: root
-    password: root
+    password: 111111
   jpa:
     show-sql: true # 默认false，在日志里显示执行的sql语句
     database: mysql
