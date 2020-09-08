@@ -1,18 +1,35 @@
 package com.testjpa.dao;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity(name="fileinfo")
 public class FileInfo {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    private String fileName;
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    private String filename;
     private String type;
     private String path;
-    @OneToMany(mappedBy="fileID")
+
+    public List<TagInfo> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<TagInfo> tagList) {
+        this.tagList = tagList;
+    }
+
+    @OneToMany(mappedBy="file",cascade=CascadeType.ALL)
     private List<TagInfo> tagList;
 
     public int getId() {
@@ -21,14 +38,6 @@ public class FileInfo {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 
     public String getType() {

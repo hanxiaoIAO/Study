@@ -17,6 +17,6 @@ public class FileSystemController {
     @RequestMapping(path = "/addFile",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public void save(@RequestBody String requestBody){
-        System.out.println(requestBody);
+        fileService.save(requestBody);
     }
 }

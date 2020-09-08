@@ -60,6 +60,7 @@ dependencies {
     //implementation 'org.springframework.boot:spring-boot-starter-web'
     //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java:8.0.16'
+//    implementation 'com.alibaba:fastjson:1.2.47'
 	compile(
 			'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.boot:spring-boot-starter-data-jpa',
@@ -68,7 +69,7 @@ dependencies {
             'org.hibernate:hibernate-core'
             //'mysql:mysql-connector-java:5.12'
     )
-
+    compile group: 'com.alibaba', name: 'fastjson', version:'1.2.47'
     // Use JUnit test framework
     //testImplementation 'junit:junit:4.12'
 }
