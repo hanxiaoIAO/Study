@@ -25,6 +25,16 @@ public class FileInfo {
         return tagList;
     }
 
+    public String getTagStr(){
+        StringBuilder sb = new StringBuilder();
+        for(TagInfo tag:tagList){
+            sb.append(" ");
+            sb.append("#");
+            sb.append(tag.getTag());
+        }
+        return sb.toString().substring(1);
+    }
+
     public void setTagList(List<TagInfo> tagList) {
         this.tagList = tagList;
     }
