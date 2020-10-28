@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表渲染</title>
+</head>
+<body>
+    <div id="app">
+        <ol v-for="(todo,index) in todos" >
+           {{todo.id+"-"+todo.text+'-'+index}}
+        </ol>
+        <ol>
+            <li v-for="(todo,index) in todos" :key="todo.id">{{todo.id+"-"+todo.text+'-'+index}}</li>
+        </ol>
+    </div>
+
+    <script src="resources/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                todos: [
+                    {text: '学习 JavaScript',id:1},
+                    {text: '学习 Vue',id:40}
+                ]
+            }
+        })
+
+        app.todos.push({text: '新项目',id:3});
+    </script>
+</body>
+</html>
