@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页</title>
+</head>
+
+<body>
+    <div id="app">
+		<div>{{filelist}}</div>
+		<div>
+			<input v-model="filename"></input>
+			<button @click="show">show</button>
+		</div>
+		<div v-html="html"></div>
+    </div>
+    <script src="/libs/vue.js"></script>
+	<script src="/libs/showdown.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		var app = new Vue({
+			el:"#app",
+			data: {
+                filelist: '',
+				filename:'',
+				html:''
+            },
+			methods: {
+				show: function () {
+					axios.post('/getFile',{
+						fileName: this.filename,
+						})
+					.then(function (response) {
+						var converter = new showdown.Converter();
+						var text = response.data;
+						app.$data.html = converter.makeHtml(text);
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+				}
+			},
+			created: function () {
+				axios.get('/listFile')
+					.then(function (response) {
+						app.$data.filelist = response.data;
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			}
+		})
+	</script>
+</body>
+
+</html>

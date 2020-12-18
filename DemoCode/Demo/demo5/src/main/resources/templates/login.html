@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录界面</title>
+</head>
+
+<body>
+    <div id="app">
+		<div>
+			<input v-model="userCode" placeholder="账号"></input>
+			<input v-model="password" placeholder="密码"></input>
+			<button @click="login">登录</button>
+		</div>
+    </div>
+    <script src="/libs/vue.js"></script>
+	<script src="/libs/showdown.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		var app = new Vue({
+			el:"#app",
+			data: {
+                userName: '',
+				password:''
+            },
+			methods: {
+				login: function () {
+					axios.post('/login',{
+						code: this.userCode,
+						name: this.userCode
+						})
+					.then(function (response) {
+						console.log(response);
+						location.href="/"
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>
