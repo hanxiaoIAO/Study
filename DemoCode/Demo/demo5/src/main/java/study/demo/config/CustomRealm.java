@@ -16,12 +16,15 @@ import org.springframework.stereotype.Component;
 
 import study.demo.dao.UserEntity;
 import study.demo.dao.UserRepo;
+import study.demo.service.PasswordService;
 
 @Component
 public class CustomRealm extends AuthorizingRealm {
 
 	@Autowired
 	UserRepo userRepo;
+	@Autowired
+	PasswordService passwordService;
 	
 	/**
 	 * 授权
@@ -46,11 +49,23 @@ public class CustomRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 		System.out.println("-------身份认证方法--------");
-		 UsernamePasswordToken upToken = (UsernamePasswordToken) authenticationToken;
-	        String username = upToken.getUsername();
-	        String password = new String(upToken.getPassword());
+		UsernamePasswordToken upToken = (UsernamePasswordToken) authenticationToken;
+		String username = upToken.getUsername();
+		String userpassword = new String(upToken.getPassword());
+		Optional<UserEntity> userOpt = userRepo.findByCode(username);
+		
+		String password;
+		if(userOpt.isPresent()) {
+			password = new String(userOpt.get().getPassword());	
+		} else {
+			throw new AuthenticationException("用户"+username+"未注册");
+		}
 
-        return new SimpleAuthenticationInfo(username, password,getName());
+		if(!password.equalsIgnoreCase(passwordService.encrypt(userpassword))) {
+			throw new AuthenticationException("密码错误");
+		}
+
+        return new SimpleAuthenticationInfo(username, userpassword,getName());
 	}
 
 }

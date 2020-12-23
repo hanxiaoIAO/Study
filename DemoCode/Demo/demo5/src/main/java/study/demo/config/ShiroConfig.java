@@ -4,10 +4,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.DefaultSessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,7 @@ public class ShiroConfig {
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager defaultSecurityManager = new DefaultWebSecurityManager();
 		defaultSecurityManager.setRealm(customRealm);
+		defaultSecurityManager.setSessionManager(new DefaultWebSessionManager());
 		return defaultSecurityManager;
 	}
 
@@ -38,14 +41,21 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/libs/**", "anon");
 		
 		filterChainDefinitionMap.put("/", "authc");
-		filterChainDefinitionMap.put("/vip", "authc");
-		filterChainDefinitionMap.put("/vip", "roles[Admin]");
+		filterChainDefinitionMap.put("/vip", "authc,roles[Admin]");
 //		filterChainDefinitionMap.put("/notRole", "perms[admin:notRole]");
 		
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
-
 	}
+
+//    /**
+//     * 会话管理器
+//     */
+//    @Bean
+//	public DefaultSessionManager sessionManager() {
+//		DefaultSessionManager manager = new DefaultSessionManager();
+//		return manager;
+//	}
 	
     /**
      * 开启注解

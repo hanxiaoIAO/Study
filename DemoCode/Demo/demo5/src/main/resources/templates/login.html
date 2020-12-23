@@ -18,26 +18,26 @@
     </div>
     <script src="/libs/vue.js"></script>
 	<script src="/libs/showdown.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="/libs/axios.min.js"></script>
 	<script>
 		var app = new Vue({
 			el:"#app",
 			data: {
-                userName: '',
+                userCode: '',
 				password:''
             },
 			methods: {
 				login: function () {
 					axios.post('/login',{
 						code: this.userCode,
-						name: this.userCode
+						password: this.password
 						})
 					.then(function (response) {
 						console.log(response);
 						location.href="/"
 					})
 					.catch(function (error) {
-						console.log(error);
+						confirm(error);
 					});
 				}
 			}

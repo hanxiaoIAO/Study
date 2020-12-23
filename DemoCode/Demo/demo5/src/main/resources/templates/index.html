@@ -14,6 +14,8 @@
 			<div>这是主页</div>
 			<a href="/vip">vip</a>
 			<button @click="logout">退出</button>
+			<button @click="listSessions">显示Sessions</button>
+			<dic>{{sessions}}</div>
 		</div>
     </div>
     <script src="/libs/vue.js"></script>
@@ -22,12 +24,24 @@
 	<script>
 		var app = new Vue({
 			el:"#app",
+			data:{
+				sessions:""
+			},
 			methods: {
 				logout: function () {
 					axios.get('/logout')
 					 .then(function (response) {
 						console.log(response);
 						location.href="/login"
+					 })
+					.catch(function (error) {
+						console.log(error);
+					});
+				},
+				listSessions:function(){
+					axios.get('/listSessions')
+					 .then(function (response) {
+						app.$data.sessions = response.data;
 					 })
 					.catch(function (error) {
 						console.log(error);

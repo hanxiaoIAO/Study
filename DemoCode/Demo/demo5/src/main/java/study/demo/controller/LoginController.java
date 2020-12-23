@@ -1,10 +1,15 @@
 package study.demo.controller;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.DefaultSessionManager;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,7 +68,7 @@ public class LoginController {
 		Subject subject = SecurityUtils.getSubject();
 		boolean authen = subject.isAuthenticated();
 		if(!authen) {
-			UsernamePasswordToken token  = new UsernamePasswordToken(user.getCode(), "");
+			UsernamePasswordToken token  = new UsernamePasswordToken(user.getCode(), user.getPassword());
 			subject.login(token);
 		}
 		return "success";
@@ -81,6 +86,17 @@ public class LoginController {
 	public String deRegist(@RequestBody UserEntity user) throws IOException {
 		loginService.deRegist(user.getCode());
 		return "注销成功";
+	}
+	
+	@GetMapping("/listSessions")
+	@ResponseBody
+	public String listSessions() throws IOException {
+		Collection<Session> sessions = ((DefaultWebSessionManager)((DefaultWebSecurityManager)SecurityUtils.getSecurityManager()).getSessionManager()).getSessionDAO().getActiveSessions();
+		StringBuilder sb = new StringBuilder();
+		for(Session session:sessions) {
+			sb.append(session.getAttributeKeys().toString());
+		}
+		return sb.toString();
 	}
 
 }
