@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.proinnova</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>service</artifactId>
 	<packaging>war</packaging>
 
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>service</name>
+	<description>service project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -116,7 +116,7 @@
 	</repositories>
 
 	<build>
-		<finalName>demo</finalName>
+		<finalName>service</finalName>
 		<resources>
 			<!-- 编译之后包含xml和properties -->
 			<resource>
