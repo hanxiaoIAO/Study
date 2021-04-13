@@ -8,7 +8,7 @@ server:
   
 logging: # file和path不同时生效
 #   file: log/springbootdemo.log
-   path: /log
+   path: C:/data/log
    
 spring:
   jmx:
